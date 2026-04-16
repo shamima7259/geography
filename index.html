@@ -1,0 +1,142 @@
+import React from 'react';
+
+export default function Home() {
+  // মহাদেশ অনুযায়ী দেশ, রাজধানী এবং প্রতিবেশী দেশের ডেটা
+  const worldData =[
+    {
+      continent: "এশিয়া (Asia)",
+      countries: [
+        { name: "বাংলাদেশ", capital: "ঢাকা", neighbors:["ভারত", "মিয়ানমার"] },
+        { name: "ভারত", capital: "নয়াদিল্লি", neighbors: ["বাংলাদেশ", "চীন"] },
+        { name: "পাকিস্তান", capital: "ইসলামাবাদ", neighbors: ["ভারত", "আফগানিস্তান"] },
+        { name: "জাপান", capital: "টোকিও", neighbors: ["দক্ষিণ কোরিয়া", "রাশিয়া"] },
+        { name: "চীন", capital: "বেইজিং", neighbors: ["মঙ্গোলিয়া", "রাশিয়া"] },
+        { name: "সৌদি আরব", capital: "রিয়াদ", neighbors: ["ইয়েমেন", "ওমান"] }
+      ]
+    },
+    {
+      continent: "ইউরোপ (Europe)",
+      countries:[
+        { name: "যুক্তরাজ্য", capital: "লন্ডন", neighbors: ["আয়ারল্যান্ড", "ফ্রান্স"] },
+        { name: "ফ্রান্স", capital: "প্যারিস", neighbors:["জার্মানি", "স্পেন"] },
+        { name: "জার্মানি", capital: "বার্লিন", neighbors: ["পোল্যান্ড", "অস্ট্রিয়া"] },
+        { name: "ইতালি", capital: "রোম", neighbors: ["সুইজারল্যান্ড", "ফ্রান্স"] },
+        { name: "স্পেন", capital: "মাদ্রিদ", neighbors: ["পর্তুগাল", "ফ্রান্স"] }
+      ]
+    },
+    {
+      continent: "উত্তর আমেরিকা (North America)",
+      countries:[
+        { name: "যুক্তরাষ্ট্র", capital: "ওয়াশিংটন, ডি.সি.", neighbors:["কানাডা", "মেক্সিকো"] },
+        { name: "কানাডা", capital: "অটোয়া", neighbors: ["যুক্তরাষ্ট্র", "গ্রিনল্যান্ড"] },
+        { name: "মেক্সিকো", capital: "মেক্সিকো সিটি", neighbors: ["যুক্তরাষ্ট্র", "গুয়াতেমালা"] }
+      ]
+    },
+    {
+      continent: "দক্ষিণ আমেরিকা (South America)",
+      countries:[
+        { name: "ব্রাজিল", capital: "ব্রাসিলিয়া", neighbors:["আর্জেন্টিনা", "পেরু"] },
+        { name: "আর্জেন্টিনা", capital: "বুয়েনস আইরেস", neighbors: ["চিলি", "ব্রাজিল"] },
+        { name: "কলম্বিয়া", capital: "বোগোতা", neighbors: ["ভেনিজুয়েলা", "ইকুয়েডর"] }
+      ]
+    },
+    {
+      continent: "আফ্রিকা (Africa)",
+      countries:[
+        { name: "মিশর", capital: "কায়রো", neighbors:["সুদান", "লিবিয়া"] },
+        { name: "দক্ষিণ আফ্রিকা", capital: "প্রিটোরিয়া", neighbors: ["নামিবিয়া", "বতসোয়ানা"] },
+        { name: "নাইজেরিয়া", capital: "আবুজা", neighbors: ["বেনিন", "ক্যামেরুন"] },
+        { name: "মরক্কো", capital: "রাবাত", neighbors: ["আলজেরিয়া", "মৌরিতানিয়া"] }
+      ]
+    },
+    {
+      continent: "ওশেনিয়া (Oceania)",
+      countries:[
+        { name: "অস্ট্রেলিয়া", capital: "ক্যানবেরা", neighbors: ["নিউজিল্যান্ড", "পাপুয়া নিউগিনি"] },
+        { name: "নিউজিল্যান্ড", capital: "ওয়েলিংটন", neighbors: ["অস্ট্রেলিয়া", "ফিজি"] }
+      ]
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#F8FAFC] font-sans text-slate-800 pb-16">
+      
+      {/* চমৎকার একটি হেডার সেকশন */}
+      <header className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 text-center shadow-md mb-12">
+        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
+          বিশ্বের দেশ ও রাজধানী
+        </h1>
+        <p className="text-blue-100 text-lg md:text-xl max-w-2xl mx-auto px-4">
+          মহাদেশ অনুযায়ী দেশ, তাদের রাজধানী এবং প্রতিবেশী দেশসমূহের তালিকা
+        </p>
+      </header>
+
+      {/* মূল কন্টেন্ট */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {worldData.map((region, index) => (
+          <section key={index} className="mb-16">
+            
+            {/* মহাদেশের নাম */}
+            <h2 className="text-3xl font-bold text-slate-800 mb-8 pb-3 border-b-2 border-indigo-100 flex items-center gap-3">
+              🌍 {region.continent}
+            </h2>
+
+            {/* দেশগুলোর কার্ড গ্রিড */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {region.countries.map((country, idx) => (
+                <div 
+                  key={idx} 
+                  className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group"
+                >
+                  <h3 className="text-2xl font-bold text-indigo-700 mb-5 group-hover:text-indigo-500 transition-colors">
+                    {country.name}
+                  </h3>
+
+                  <div className="space-y-4">
+                    {/* রাজধানী সেকশন */}
+                    <div className="flex items-start gap-3">
+                      <span className="text-xl">🏛️</span>
+                      <div>
+                        <p className="text-xs text-slate-400 uppercase font-bold tracking-wider mb-0.5">
+                          রাজধানী
+                        </p>
+                        <p className="text-slate-700 font-medium text-lg">
+                          {country.capital}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* প্রতিবেশী দেশ সেকশন */}
+                    <div className="flex items-start gap-3 pt-3 border-t border-slate-50">
+                      <span className="text-xl">🗺️</span>
+                      <div>
+                        <p className="text-xs text-slate-400 uppercase font-bold tracking-wider mb-1.5">
+                          প্রতিবেশী দেশ
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {country.neighbors.map((neighbor, nIdx) => (
+                            <span 
+                              key={nIdx} 
+                              className="bg-indigo-50 text-indigo-700 text-sm px-3 py-1 rounded-full font-medium border border-indigo-100"
+                            >
+                              {neighbor}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+      </main>
+      
+      {/* ফুটার */}
+      <footer className="text-center text-slate-500 mt-8">
+        <p>© {new Date().getFullYear()} - পৃথিবীর সকল দেশ ও রাজধানী</p>
+      </footer>
+    </div>
+  );
+}
